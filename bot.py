@@ -50,16 +50,14 @@ def find_image(entry):
 
 def build_text(entry, limit):
     title = html.escape(clean(entry.title))
-    link = html.escape(entry.link, quote=True)
-    tail = f'\n\n<a href="{link}">Читати повністю</a>'
     head = f"<b>{title}</b>"
     summary = clean(entry.get("summary", ""))
-    room = limit - len(head) - len(tail) - 4
+    room = limit - len(head) - 4
     body = ""
     if summary and room > 50:
         s = summary if len(summary) <= room else summary[: room - 1].rsplit(" ", 1)[0] + "…"
         body = "\n\n" + html.escape(s)
-    return head + body + tail
+    return head + body
 
 
 def tg(method, **data):
