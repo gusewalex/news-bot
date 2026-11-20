@@ -82,8 +82,16 @@ def send(entry):
 
 
 def main():
-    feed = feedparser.parse(RSS_URL, agent=HEADERS["User-Agent"])
-    entries = list(reversed(feed.entries))  # від старих до нових
+    entries = []
+    for url in RSS_URLS:
+        try:
+            feed = feedparser.parse(url, agent=HEADERS["User-Agent"])
+            entries.extend(feed.entries)
+        except Exception as ex:
+            print("Не вдалося прочитати стрічку", url, ex)
+    # від старих до нових, з усіх сайтів разом
+    entries.sort(key=lambda e: e.get("published_parsed") or time.gmtime(0))
+
     state = load_state()
     first_run = state is None
     posted = state or []
