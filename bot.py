@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 RSS_URLS = [
     "https://www.pravda.com.ua/rss/view_mainnews/",
-    "https://reviewnews.net/feed",
 ]
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHANNEL = os.environ["CHANNEL"]
