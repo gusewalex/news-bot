@@ -54,7 +54,7 @@ def find_image(entry):
 def build_text(entry, limit):
     title = html.escape(clean(entry.title))
     head = f"<b>{title}</b>"
-    footer = '\n\n<a href="https://t.me/reviewnews">ReviewNews</a>'
+    footer = '\n\n<a href="https://t.me/reviewnews">🇺🇦 Review News / Підписатися</a>'
     summary = clean(entry.get("summary", ""))
     room = limit - len(head) - len(footer) - 4
     body = ""
